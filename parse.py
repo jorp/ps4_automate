@@ -9,10 +9,10 @@ cmd_dict = {
         "t":"0x0043",
         "x":"0xff0d",
         "s":"0x005c",
-        "dr":"0x08fd",
-        "dd":"0x08fe",
-        "dl":"0x08fb",
-        "du":"0x08fc",
+        "dr":"0xff53",
+        "dd":"0xff54",
+        "dl":"0xff51",
+        "du":"0xff52",
         "r1":"0x0033",
         "r2":"0x0034",
         "r3":"0x0036",
@@ -35,9 +35,12 @@ cmd_dict = {
 
 commands = []
 def look_up_keycode(key):
-    return keycode
+    print(cmd_dict.get(key))
+    #return cmd_dict.get(key)
 def run_commands(button, repeat = "1"):
-    print("xdotool key --repeat {} --delay 1000 '{}'".format(repeat, button))
+    #print("xdotool key --repeat {} --delay 1000 '{}'".format(repeat, button))
+    os.system("xdotool key --repeat {} --delay 1000 '{}'".format(repeat, cmd_dict.get(button)))
+    print(cmd_dict.get(button))
 
 with open(sys.argv[1], 'r') as in_file:
     for line in in_file:
@@ -51,6 +54,8 @@ with open(sys.argv[1], 'r') as in_file:
             commands.append(line.strip())
 
 #print(commands)
+os.system("xdotool windowactivate 100663928")
+os.system("xdotool windowfocus 100663928")
 for item in commands:
     if type(item) is tuple:
         repeat = item[0]
