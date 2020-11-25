@@ -39,7 +39,7 @@ def look_up_keycode(key):
     #return cmd_dict.get(key)
 def run_commands(button, repeat = "1"):
     #print("xdotool key --repeat {} --delay 1000 '{}'".format(repeat, button))
-    os.system("xdotool key --repeat {} --delay 1000 '{}'".format(repeat, cmd_dict.get(button)))
+    os.system("xdotool key --repeat {} --delay 100 '{}'".format(repeat, cmd_dict.get(button)))
     print(cmd_dict.get(button))
 
 with open(sys.argv[1], 'r') as in_file:
@@ -54,8 +54,8 @@ with open(sys.argv[1], 'r') as in_file:
             commands.append(line.strip())
 
 #print(commands)
-os.system("xdotool windowactivate 100663928")
-os.system("xdotool windowfocus 100663928")
+os.system("xdotool windowactivate 142606430")
+os.system("xdotool windowfocus 142606430")
 for item in commands:
     if type(item) is tuple:
         repeat = item[0]
