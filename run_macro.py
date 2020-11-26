@@ -41,7 +41,6 @@ def look_up_keycode(key):
 
 def run_commands(button, repeat = "1"):
     os.system("xdotool key --repeat {} --delay 1000 '{}'".format(repeat, look_up_keycode(button)))
-    print(cmd_dict.get(button))
 
 if __name__=="__main__":
     if len(sys.argv) != 2:
@@ -59,7 +58,6 @@ if __name__=="__main__":
             else:
                 commands.append(line.strip())
 
-#print(commands)
     window_id = subprocess.Popen("wmctrl -l | grep '[C]hiaki | Stream' | grep -Eo '0x[0-9a-f]+'", shell=True, stdout=subprocess.PIPE, universal_newlines=True).communicate()[0].strip()
     os.system("xdotool windowactivate {}".format(window_id))
     os.system("xdotool windowfocus {}".format(window_id))
