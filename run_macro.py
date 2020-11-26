@@ -37,31 +37,37 @@ cmd_dict = {
 commands = []
 def look_up_keycode(key):
     print(cmd_dict.get(key))
-    #return cmd_dict.get(key)
+    return cmd_dict.get(key)
+
 def run_commands(button, repeat = "1"):
-    os.system("xdotool key --repeat {} --delay 1000 '{}'".format(repeat, cmd_dict.get(button)))
+    os.system("xdotool key --repeat {} --delay 1000 '{}'".format(repeat, look_up_keycode(button)))
     print(cmd_dict.get(button))
 
-with open(sys.argv[1], 'r') as in_file:
-    for line in in_file:
-        match = re.match(r"([0-9]+)([a-z]+)", line, re.I)
-        if match:
-            items = match.groups()
-            #print(items)
-            commands.append(items)
-        else:
-            #print(line.strip())
-            commands.append(line.strip())
+if __name__=="__main__":
+    if len(sys.argv) != 2:
+        print(sys.argv[0], "<macro input file>")
+        sys.exit(2)
+    if not os.path.isfile(sys.argv[1]):
+        print(sys.argv[1], "is not a file")
+        sys.exit(2)
+    with open(sys.argv[1], 'r') as in_file:
+        for line in in_file:
+            match = re.match(r"([0-9]+)([a-z]+)", line, re.I)
+            if match:
+                items = match.groups()
+                commands.append(items)
+            else:
+                commands.append(line.strip())
 
 #print(commands)
-window_id = subprocess.Popen("wmctrl -l | grep 'Chiaki | Stream' | grep -v 'grep' | grep -Eo '0x[0-9a-f]+'", shell=True, stdout=subprocess.PIPE, universal_newlines=True).communicate()[0].strip()
-os.system("xdotool windowactivate {}".format(window_id))
-os.system("xdotool windowfocus {}".format(window_id))
-for item in commands:
-    if type(item) is tuple:
-        repeat = item[0]
-        cmd = item[1]
-        run_commands(cmd, repeat)
-    else:
-        run_commands(item)
+    window_id = subprocess.Popen("wmctrl -l | grep '[C]hiaki | Stream' | grep -Eo '0x[0-9a-f]+'", shell=True, stdout=subprocess.PIPE, universal_newlines=True).communicate()[0].strip()
+    os.system("xdotool windowactivate {}".format(window_id))
+    os.system("xdotool windowfocus {}".format(window_id))
+    for item in commands:
+        if type(item) is tuple:
+            repeat = item[0]
+            cmd = item[1]
+            run_commands(cmd, repeat)
+        else:
+            run_commands(item)
 
