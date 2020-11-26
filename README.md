@@ -10,7 +10,7 @@
 
 ## usage
 ```bash
-$ python run_macro.py <macro input file>
+$ python ps4_automate.py <macro input file>
 ```
 
 ### Example
