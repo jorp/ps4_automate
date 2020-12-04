@@ -1,5 +1,7 @@
 # ps4_automate
 
+full write-up available on my blog [here](https://jorp.xyz/ps4-automate).
+
 ## requirements
 
 - [Chiaki](https://github.com/thestr4ng3r/chiaki)
