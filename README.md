@@ -1,6 +1,6 @@
 # ps4_automate
 
-full write-up available on my blog [here](https://jorp.xyz/ps4-automate).
+full write-up available on my blog [here](https://jorp.xyz/posts/ps4-automate/).
 
 ## requirements
 
