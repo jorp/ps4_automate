@@ -2,6 +2,11 @@
 
 full write-up available on my blog [here](https://jorp.xyz/posts/ps4-automate/).
 
+## watch it in action
+
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/BMzH5qYpius/0.jpg)](http://www.youtube.com/watch?v=BMzH5qYpius)
+
+
 ## requirements
 
 - [Chiaki](https://github.com/thestr4ng3r/chiaki)
